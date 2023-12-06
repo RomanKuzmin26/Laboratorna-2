@@ -1,0 +1,84 @@
+#include "pch.h"
+#include "CppUnitTest.h"
+#include "../KSKS Server/MyForm.cpp"
+#include <iostream>
+
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+
+namespace UnitTest1
+{
+	TEST_CLASS(UnitTest1)
+	{
+	public:
+
+		TEST_METHOD(TestPixel)
+		{
+			std::string expected = "draw pixel : 10 10 red";
+
+			std::stringstream buffer;
+			std::streambuf* sbuf = std::cout.rdbuf();
+			std::cout.rdbuf(buffer.rdbuf());
+
+			int result = main();
+
+			std::cout.rdbuf(sbuf);
+			std::cout << "std original buffer: \n";
+			std::cout << buffer.get();
+
+			// Test
+			Assert::AreEqual(expected, buffer.str());
+		}
+		TEST_METHOD(TestLine)
+		{
+			std::string expected = "draw line : 50 50 200 100 blue";
+
+			std::stringstream buffer;
+			std::streambuf* sbuf = std::cout.rdbuf();
+			std::cout.rdbuf(buffer.rdbuf());
+
+			int result = main();
+
+			std::cout.rdbuf(sbuf);
+			std::cout << "std original buffer: \n";
+			std::cout << buffer.get();
+
+			// Test
+			Assert::AreEqual(expected, buffer.str());
+		}
+		TEST_METHOD(TestText)
+		{
+			std::string expected = "draw text : 50 50 purple 2 54 HELLO!";
+
+			std::stringstream buffer;
+			std::streambuf* sbuf = std::cout.rdbuf();
+			std::cout.rdbuf(buffer.rdbuf());
+
+			int result = main();
+
+			std::cout.rdbuf(sbuf);
+			std::cout << "std original buffer: \n";
+			std::cout << buffer.get();
+
+			// Test
+			Assert::AreEqual(expected, buffer.str());
+		}
+		TEST_METHOD(TestCircle)
+		{
+			std::string expected = "draw circle : 100 100 200 black";
+
+			std::stringstream buffer;
+			std::streambuf* sbuf = std::cout.rdbuf();
+			std::cout.rdbuf(buffer.rdbuf());
+
+			int result = main();
+
+			std::cout.rdbuf(sbuf);
+			std::cout << "std original buffer: \n";
+			std::cout << buffer.get();
+
+			// Test
+			Assert::AreEqual(expected, buffer.str());
+		}
+
+	};
+}
